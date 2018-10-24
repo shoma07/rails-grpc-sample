@@ -1,0 +1,39 @@
+syntax = "proto3"; // ProtocolBufferのバージョン
+
+package blog;
+
+service PostService {
+  rpc ReadAll (ReadAllRequest) returns (ReadAllResponse) {}
+  rpc Read (ReadByIdRequest) returns (ReadByIdResponse) {}
+  rpc Create (CreateRequest) returns (CreateResponse) {}
+}
+
+message ReadAllRequest {
+}
+
+message ReadAllResponse {
+  repeated Post posts = 1;
+}
+
+message ReadByIdRequest {
+  int32 id = 1;
+}
+
+message ReadByIdResponse {
+  Post post = 1;
+}
+
+message CreateRequest {
+  string title = 1;
+  string body = 2;
+}
+
+message CreateResponse {
+  Post post = 1;
+}
+
+message Post {
+  int32 id = 1;
+  string title = 2;
+  string body = 3;
+}
